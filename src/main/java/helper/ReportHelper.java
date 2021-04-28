@@ -17,6 +17,8 @@ public class ReportHelper {
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Guru99 Ecommerce Automation Test Demo Results");
         reporter.config().setDocumentTitle("Guru99 Ecommerce Automation Test Demo Results");
+        extentReports.setSystemInfo("Report", "Rui Guo");
+        extentReports.setSystemInfo("Report date", localDateTime.toString());
         extentReports.attachReporter(reporter);
         return extentReports;
     }

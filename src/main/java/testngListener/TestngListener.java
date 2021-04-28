@@ -16,28 +16,30 @@ public class TestngListener implements ITestListener {
     private Logger logger = LogManager.getLogger(TestngListener.class);
     private ExtentReports reports = ReportHelper.getExtentReport();
     private ExtentTest extentTest;
+    private ThreadLocal<ExtentTest> extentTestPool = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
         logger.info("Start the test case: " + result.getMethod().getMethodName());
         extentTest = reports.createTest(result.getMethod().getMethodName());
+        extentTestPool.set(extentTest);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Passed" );
-        extentTest.log(Status.PASS, "Pass");
+        extentTestPool.get().log(Status.PASS, "Pass");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Failed" );
-        extentTest.log(Status.FAIL, result.getThrowable());
+        extentTestPool.get().log(Status.FAIL, result.getThrowable());
 
         try{
             WebDriver driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
             String screenShotPath = ScreenShotHelper.getScreenShot(driver, result.getMethod().getMethodName());
-            extentTest.addScreenCaptureFromPath(screenShotPath);
+            extentTestPool.get().addScreenCaptureFromPath(screenShotPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,7 +48,7 @@ public class TestngListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Skipped" );
-        extentTest.log(Status.SKIP, "Skip");
+        extentTestPool.get().log(Status.SKIP, "Skip");
     }
 
     @Override
@@ -57,7 +59,7 @@ public class TestngListener implements ITestListener {
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Timeout" );
-        extentTest.log(Status.INFO, "Timeout");
+        extentTestPool.get().log(Status.INFO, "Timeout");
     }
 
     @Override
