@@ -32,11 +32,10 @@ public class InitDriverHelper {
             case SAFARI:
                 initSafariDriver(headless);
                 break;
-            default:
+            case CHROME:
                 initChromeDriver(headless);
+                break;
         }
-
-
         return driver;
     }
 
@@ -54,13 +53,14 @@ public class InitDriverHelper {
 
     private void initChromeDriver(boolean headless) {
         if (osName.contains("Windows")) {
-            URL driverPath = this.getClass().getResource("/driver/windows/chromedriver");
+            URL driverPath = this.getClass().getResource("/driver/windows/chromedriver.exe");
             System.setProperty("webdriver.chrome.driver", driverPath.getPath());
             logger.info("System is: Windows");
         } else if (osName.contains("Mac")) {
+
             URL driverPath = this.getClass().getResource("/driver/macos/chromedriver");
             System.setProperty("webdriver.chrome.driver", driverPath.getPath());
-            logger.info("System is: MacOs");
+            logger.info("System is: Mac OS");
         }else {
             logger.error("Do not support the system: " + osName);
             throw new IllegalStateException("Do not support the system" + osName);
@@ -71,6 +71,7 @@ public class InitDriverHelper {
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.setHeadless(headless);
         driver = new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
         logger.info("Create a chromedriver");
     }
 }

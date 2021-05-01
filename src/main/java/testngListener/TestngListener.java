@@ -48,7 +48,8 @@ public class TestngListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Skipped" );
-        extentTestPool.get().log(Status.SKIP, "Skip");
+        extentTest = reports.createTest(result.getMethod().getMethodName());
+        extentTest.log(Status.SKIP, "Skip");
     }
 
     @Override

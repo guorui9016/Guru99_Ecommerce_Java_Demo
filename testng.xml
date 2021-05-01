@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="testngListener.TestngListener"></listener>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="/Users/ray.guo/Documents/workshop/test/Guru99_Ecommerce_Java_Demo">
+        <parameter name="browser" value="CHROME"/>
+        <classes>
+            <class name="TestCase1"></class>
+        </classes>
+    </test>
+</suite>
