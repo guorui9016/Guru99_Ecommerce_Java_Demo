@@ -11,7 +11,6 @@ import pageRepository.MobilePage;
 import java.util.Arrays;
 
 public class TestCase1 extends TestCaseBase {
-    WebDriver driver;
     @Parameters("browser")
     @BeforeClass
     public void setUp(String browser){
@@ -24,16 +23,17 @@ public class TestCase1 extends TestCaseBase {
         //step 1: check the title of the home page
         HomePage homePage = new HomePage(driver);
         String titleText = homePage.getPageTitleText().trim();
-        Assert.assertEquals(titleText, "THIS IS DEMO SITE FOR");
+        softAssert.assertEquals(titleText, "THIS IS DEMO SITE FOR");
 
         //step 2: goto mobile page and check the title
         MobilePage mobilePage = homePage.clickMobileLink();
-        Assert.assertEquals(mobilePage.getPageTitle(),"MOBILE");
+        softAssert.assertEquals(mobilePage.getPageTitle(),"MOBILE");
 
         //step 3: sort the products by name and check the name
         String[] allProductsName = mobilePage.getAllProductsName();
         Arrays.sort(allProductsName);
         mobilePage.setSortBySelect("Name");
-        Assert.assertEquals(mobilePage.getAllProductsName(), allProductsName);
+        softAssert.assertEquals(mobilePage.getAllProductsName(), allProductsName);
+        softAssert.assertAll();
     }
 }
