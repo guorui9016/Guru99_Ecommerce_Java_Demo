@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-    private Logger logger = LogManager.getLogger(HomePage.class);
 
     @FindBy(css = ".page-title h2")
     private WebElement pageTitle;
@@ -21,10 +20,12 @@ public class HomePage extends BasePage {
     }
 
     public String getPageTitleText() {
+        highlight(pageTitle);
         return pageTitle.getText();
     }
 
     public MobilePage clickMobileLink(){
+        highlight(mobileLink);
         mobileLink.click();
         return new MobilePage(driver);
     }
