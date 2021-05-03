@@ -4,7 +4,7 @@
 <!--<suite name="All Test Suite" parallel="classes" thread-count="5">-->
 <suite name="All Test Suite">
     <listeners>
-        <listener class-name="testngListener.TestngListener"></listener>
+        <listener class-name="listener.TestngListener"></listener>
     </listeners>
 
     <test verbose="3" preserve-order="true" name="/Users/ray.guo/Documents/workshop/test/Guru99_Ecommerce_Java_Demo">
