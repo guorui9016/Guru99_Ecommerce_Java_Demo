@@ -36,4 +36,10 @@ public class TestCase1 extends TestCaseBase {
         softAssert.assertEquals(mobilePage.getAllProductsName(), allProductsName);
         softAssert.assertAll();
     }
+
+    @Test
+    public void testCase02(){
+        //step 1: find out the Sony Xperia and get the price
+
+    }
 }

@@ -19,12 +19,26 @@ public class MobilePage extends BasePage {
     @FindBy(css = "ul[class^=products-grid]")
     private WebElement productsList;
 
+    @FindBy(xpath = "//a[@title=\"Xperia\"] /..")
+    private WebElement productSony;
+
     public MobilePage(WebDriver driver) {
         super(driver);
     }
 
     public String getPageTitle(){
         return pageTitle.getText();
+    }
+
+    public WebElement getProductSony(){
+        highlight(productSony);
+        return productSony;
+    }
+
+    public ProductDetailsPage gotoProducts(WebElement product){
+        highlight(product);
+        product.click();
+        return new ProductDetailsPage(driver);
     }
 
     public void setSortBySelect(String itemText){

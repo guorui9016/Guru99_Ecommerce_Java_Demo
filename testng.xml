@@ -11,6 +11,7 @@
         <parameter name="browser" value="CHROME"/>
         <classes>
             <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
         </classes>
     </test>
 
