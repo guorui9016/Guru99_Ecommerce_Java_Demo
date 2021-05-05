@@ -5,24 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageRepository.HomePage;
 import pageRepository.MobilePage;
 import pageRepository.ProductDetailsPage;
 
-import java.util.Arrays;
-
 public class TestCase2 extends TestCaseBase {
     Logger logger = LogManager.getLogger(TestCase2.class);
-
-    @Parameters("browser")
-    @BeforeClass
-    public void setUp(String browser){
-        driver = initWebDriver(browser);
-        driver.get(ConfigHelper.getValue("url"));
-    }
 
     @Test
     public void testCase02(){

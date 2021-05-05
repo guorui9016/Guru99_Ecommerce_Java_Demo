@@ -36,9 +36,17 @@ public class MobilePage extends BasePage {
     }
 
     public ProductDetailsPage gotoProducts(WebElement product){
-        highlight(product);
-        product.click();
+        WebElement productLink = product.findElement(By.className("product-image"));
+        highlight(productLink);
+        productLink.click();
         return new ProductDetailsPage(driver);
+    }
+
+    public ShoppingCartPage addProductIntoCart(WebElement product){
+        WebElement btnAddToCart = product.findElement(By.cssSelector("button"));
+        highlight(btnAddToCart);
+        btnAddToCart.click();
+        return new ShoppingCartPage(driver);
     }
 
     public void setSortBySelect(String itemText){

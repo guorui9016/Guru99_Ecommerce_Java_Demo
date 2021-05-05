@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<!--<suite name="All Test Suite" parallel="classes" thread-count="5">-->
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="classes" thread-count="5">
+<!--<suite name="All Test Suite">-->
     <listeners>
         <listener class-name="listener.TestngListener"></listener>
     </listeners>
-
     <test verbose="3" preserve-order="true" name="/Users/ray.guo/Documents/workshop/test/Guru99_Ecommerce_Java_Demo">
         <parameter name="browser" value="CHROME"/>
         <classes>
             <class name="TestCase1"></class>
             <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
         </classes>
     </test>
 
-<!--    <test verbose="3" preserve-order="true" name="/Users/ray.guo/Documents/workshop/test/Guru99_Ecommerce_Java_Demo">-->
-<!--        <parameter name="browser" value="FIREFOX"/>-->
-<!--        <classes>-->
-<!--            <class name="TestCase1"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test verbose="3" preserve-order="true" name="/Users/ray.guo/Documents/workshop/test/Guru99_Ecommerce_Java_Demo">
+        <parameter name="browser" value="FIREFOX"/>
+        <classes>
+            <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
+        </classes>
+    </test>
 </suite>

@@ -11,12 +11,6 @@ import pageRepository.MobilePage;
 import java.util.Arrays;
 
 public class TestCase1 extends TestCaseBase {
-    @Parameters("browser")
-    @BeforeClass
-    public void setUp(String browser){
-        driver = initWebDriver(browser);
-        driver.get(ConfigHelper.getValue("url"));
-    }
 
     @Test
     public void testCase01(){
@@ -35,11 +29,5 @@ public class TestCase1 extends TestCaseBase {
         mobilePage.setSortBySelect("Name");
         softAssert.assertEquals(mobilePage.getAllProductsName(), allProductsName);
         softAssert.assertAll();
-    }
-
-    @Test
-    public void testCase02(){
-        //step 1: find out the Sony Xperia and get the price
-
     }
 }
