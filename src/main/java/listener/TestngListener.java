@@ -34,7 +34,7 @@ public class TestngListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Failed" );
-        extentTestPool.get().log(Status.FAIL, result.getThrowable());
+        extentTestPool.get().fail(result.getThrowable());
 
         try{
             WebDriver driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
@@ -49,7 +49,7 @@ public class TestngListener implements ITestListener {
     public void onTestSkipped(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Skipped" );
         extentTest = reports.createTest(result.getMethod().getMethodName());
-        extentTest.log(Status.SKIP, "Skip");
+        extentTestPool.get().log(Status.SKIP, "Skip");
     }
 
     @Override
@@ -70,7 +70,6 @@ public class TestngListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-
+        reports.flush();
     }
-
 }
