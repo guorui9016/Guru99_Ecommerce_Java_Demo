@@ -1,0 +1,16 @@
+{
+  "testCase05": [
+    {
+      "first_name": "John",
+      "middle_name": "Peter",
+      "last_name": "Smith",
+      "email": "johnsmith@gmail.com",
+      "password": "123456",
+      "confirm_password": "123456",
+      "expect_title": "MY DASHBOARD",
+      "product": "LG LCD",
+      "shared_email": "peter@gmail.com",
+      "shared_msg": "Recommend"
+    }
+  ]
+}
