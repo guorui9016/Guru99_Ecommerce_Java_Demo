@@ -47,6 +47,10 @@ Development environment:
        │  │  └─Helper                               #Config loader, screen shot and others
        │  └─resources                               #Webdrivers, test data files and log4j2 configuation file
        └─test
-           └─java                                   #Test case 
+       │  └─java                                    #Test case 
+       │
+       │─log                                        #Logs
+       │
+       └─testReport                                 #Test Report
 ``` 
 
