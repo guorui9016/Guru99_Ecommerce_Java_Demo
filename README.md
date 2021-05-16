@@ -24,10 +24,12 @@ Development environment:
    Execute testng.xml using command `“mvn test”` from command prompt.
 
 ### Demo
-   
+    
+![](https://github.com/guorui9016/Guru99_Ecommerce_Java_Demo/blob/main/demo/Testcase5%20demo.gif)
 
 ### Test Report
 
+![](https://github.com/guorui9016/Guru99_Ecommerce_Java_Demo/blob/main/demo/test_report_demo.gif)
 
 ### Project Structure
 ```
