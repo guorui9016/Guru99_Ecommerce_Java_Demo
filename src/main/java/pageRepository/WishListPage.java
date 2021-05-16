@@ -10,7 +10,7 @@ public class WishListPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement pageTitle;
 
-    @FindBy(className = ".btn-share")
+    @FindBy(css = ".btn-share")
     private WebElement btnShare;
 
     @FindBy(css = ".success-msg span")

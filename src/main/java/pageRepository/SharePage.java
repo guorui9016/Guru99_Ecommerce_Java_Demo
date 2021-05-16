@@ -16,7 +16,7 @@ public class SharePage extends BasePage {
     @FindBy(id = "message")
     private WebElement txtMessage;
 
-    @FindBy(className = "validation-passed")
+    @FindBy(css = ".form-buttons .button")
     private WebElement btnShared;
 
     public SharePage(WebDriver driver) {

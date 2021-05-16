@@ -18,11 +18,10 @@ public class TestCase5 extends TestCaseBase {
         String lastName = testData.get("last_name").getAsString();
         String email = testData.get("email").getAsString();
         String password = testData.get("password").getAsString();
-        String confirmPassword = testData.get("confirm_password").getAsString();
         String expectTitle = testData.get("expect_title").getAsString();
         String productName = testData.get("product").getAsString();
-        String sharedEmail = testData.get("shared_email").toString();
-        String sharedMsg = testData.get("shared_msg").toString();
+        String sharedEmail = testData.get("shared_email").getAsString();
+        String sharedMsg = testData.get("shared_msg").getAsString();
         logger.info("load test data: " + testData.toString());
 
         //step 1: create the new account
