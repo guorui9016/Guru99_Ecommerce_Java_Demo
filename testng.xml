@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<!--<suite name="All Test Suite" parallel="classes" thread-count="5">-->
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="classes" thread-count="5">
+<!--<suite name="All Test Suite">-->
     <listeners>
         <listener class-name="listener.TestngListener"></listener>
     </listeners>
-<!--    <test verbose="3" preserve-order="true" name="Chrome platform">-->
-<!--        <parameter name="browser" value="CHROME"/>-->
-<!--        <classes>-->
-<!--            <class name="TestCase1"></class>-->
-<!--            <class name="TestCase2"></class>-->
-<!--            <class name="TestCase3"></class>-->
-<!--            <class name="TestCase4"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test verbose="3" preserve-order="true" name="Chrome platform">
+        <parameter name="browser" value="CHROME"/>
+        <classes>
+            <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
+            <class name="TestCase4"></class>
+            <class name="TestCase5"></class>
+        </classes>
+    </test>
 
     <test verbose="3" preserve-order="true" name="Firefox platform">
         <parameter name="browser" value="FIREFOX"/>
         <classes>
-<!--            <class name="TestCase1"></class>-->
-<!--            <class name="TestCase2"></class>-->
-<!--            <class name="TestCase3"></class>-->
-<!--            <class name="TestCase4"></class>-->
+            <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
+            <class name="TestCase4"></class>
             <class name="TestCase5"></class>
         </classes>
     </test>
