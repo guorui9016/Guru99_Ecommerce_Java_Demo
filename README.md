@@ -23,6 +23,12 @@ Development environment:
 ### Start test
    Execute testng.xml using command `“mvn test”` from command prompt.
 
+### Demo
+   
+
+### Test Report
+
+
 ### Project Structure
 ```
     Guru99_Ecommerce_Java_Demo
