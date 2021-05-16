@@ -13,6 +13,7 @@
             <class name="TestCase2"></class>
             <class name="TestCase3"></class>
             <class name="TestCase4"></class>
+            <class name="TestCase5"></class>
         </classes>
     </test>
 
@@ -23,6 +24,7 @@
             <class name="TestCase2"></class>
             <class name="TestCase3"></class>
             <class name="TestCase4"></class>
+            <class name="TestCase5"></class>
         </classes>
     </test>
 </suite>
