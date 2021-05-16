@@ -5,20 +5,21 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ScreenShotHelper {
-    private static String path;
 
     public static String getScreenShot(WebDriver driver, String screenshotName) throws Exception {
-        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String time = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss"));
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         //save the screenshot
-        path = System.getProperty("user.dir") + "/testReport/FailedTestsScreenshots/"+screenshotName+dateName+".png";
+        String relativePath = "FailedTestsScreenshots/"+screenshotName + "-" + time+".png";
+        String path = System.getProperty("user.dir") + "/testReport/FailedTestsScreenshots/"+screenshotName + "-" + time+".png";
         File finalDestination = new File(path);
         FileUtils.copyFile(source, finalDestination);
-        return path;
+        return relativePath;
     }
 }

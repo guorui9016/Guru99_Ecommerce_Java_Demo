@@ -35,10 +35,10 @@ public class TestngListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         logger.info(result.getMethod().getMethodName() + " result is: Failed" );
         extentTestPool.get().fail(result.getThrowable());
-
+        ITestContext testContext = result.getTestContext();
+        WebDriver webDriver = (WebDriver)testContext.getAttribute("WebDriver");
         try{
-            WebDriver driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
-            String screenShotPath = ScreenShotHelper.getScreenShot(driver, result.getMethod().getMethodName());
+            String screenShotPath = ScreenShotHelper.getScreenShot(webDriver, result.getMethod().getMethodName());
             extentTestPool.get().addScreenCaptureFromPath(screenShotPath);
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +65,6 @@ public class TestngListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-
     }
 
     @Override

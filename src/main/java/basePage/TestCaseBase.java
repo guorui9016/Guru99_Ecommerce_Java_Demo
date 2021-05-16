@@ -3,6 +3,7 @@ package basePage;
 import helper.ConfigHelper;
 import helper.InitDriverHelper;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -15,14 +16,15 @@ public class TestCaseBase {
 
     protected WebDriver initWebDriver(String browser){
         InitDriverHelper initDriverHelper = new InitDriverHelper();
-        WebDriver driver = initDriverHelper.createDriver(browser, Boolean.parseBoolean(ConfigHelper.getValue("headless")));
+        driver = initDriverHelper.createDriver(browser, Boolean.parseBoolean(ConfigHelper.getValue("headless")));
         return driver;
-    };
+    }
 
     @Parameters("browser")
     @BeforeClass
-    public void setUp(String browser){
+    public void setUp(String browser, ITestContext context){
         driver = initWebDriver(browser);
+        context.setAttribute("WebDriver", driver);
         driver.get(ConfigHelper.getValue("url"));
     }
 
