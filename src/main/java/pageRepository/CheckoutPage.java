@@ -111,10 +111,10 @@ public class CheckoutPage extends BasePage {
         btnPaymentContinue.click();
      }
 
-     public void clickReviewContinue(){
+     public OrderConfirmPage clickReviewContinue(){
         wait.until(ExpectedConditions.visibilityOf(btnReviewContinue));
         highlight(btnReviewContinue);
         btnReviewContinue.click();
+        return new OrderConfirmPage(driver);
      }
-
 }

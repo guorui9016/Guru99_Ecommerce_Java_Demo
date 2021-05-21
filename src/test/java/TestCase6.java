@@ -67,9 +67,10 @@ public class TestCase6 extends TestCaseBase {
         checkoutPage.clickMoneyOrder();
         checkoutPage.clickPaymentContinue();
         //16. Click 'Place order' button
-        checkoutPage.clickReviewContinue();
+        OrderConfirmPage orderConfirmPage = checkoutPage.clickReviewContinue();
         //17. Verify order is generated. Note the order number
-
-
+        String pageTitle = orderConfirmPage.getPageTitle();
+        softAssert.assertNotEquals(pageTitle, "YOUR ORDER HAS BEEN RECEIVED.");
+        softAssert.assertAll();
     }
 }
