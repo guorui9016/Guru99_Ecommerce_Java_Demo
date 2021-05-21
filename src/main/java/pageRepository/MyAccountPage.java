@@ -4,6 +4,7 @@ import basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyAccountPage extends BasePage {
 
@@ -21,6 +22,9 @@ public class MyAccountPage extends BasePage {
 
     @FindBy(css = ".hello strong")
     private WebElement welcomeMsg;
+
+    @FindBy(xpath = "//a[text()='My Wishlist']")
+    private WebElement myWishlist;
 
     public MyAccountPage(WebDriver driver) {
         super(driver);
@@ -41,4 +45,9 @@ public class MyAccountPage extends BasePage {
         return welcomeMsg.getText();
     }
 
+    public WishListPage clickWishListLink(){
+        highlight(myWishlist);
+        myWishlist.click();
+        return new WishListPage(driver);
+    }
 }
