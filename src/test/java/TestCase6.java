@@ -45,15 +45,15 @@ public class TestCase6 extends TestCaseBase {
         String shippingFee = shoppingCartPage.getShippingFee();
         softAssert.assertEquals(shippingFee, "$5.00");
         //10. select shipping cost.update total
-        String priceNoShipping = shoppingCartPage.getTotalPirce();
         shoppingCartPage.selectShippingFee();
         shoppingCartPage.clickUpdateTotal();
         //11. verify shipping cost is add t total
         String priceWithShipping = shoppingCartPage.getTotalPirce();
-        softAssert.assertNotEquals(priceWithShipping, priceNoShipping);
+        softAssert.assertEquals(priceWithShipping, "$620.00");
         //12. click 'Proceed to checkout"
         CheckoutPage checkoutPage = shoppingCartPage.clickClickout();
         //13. Enter billing information
+        checkoutPage.seletNewAddress();
         checkoutPage.setAddress(address);
         checkoutPage.setCity(city);
         checkoutPage.setState(state);

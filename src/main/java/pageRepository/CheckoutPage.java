@@ -23,6 +23,8 @@ public class CheckoutPage extends BasePage {
     @FindBy(name = "billing[street][]")
     private WebElement txtAddress;
 
+
+
     @FindBy(name = "billing[city]")
     private WebElement txtCity;
 
@@ -53,12 +55,17 @@ public class CheckoutPage extends BasePage {
     @FindBy(id = "p_method_checkmo")
     private WebElement moneyOrder;
 
+    @FindBy(id = "billing-address-select")
+    private WebElement addressListItem;
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
 
     public void setAddress(String address){
+        wait.until(ExpectedConditions.visibilityOf(txtAddress));
         highlight(txtAddress);
+        txtAddress.clear();
         txtAddress.sendKeys(address);
     }
 
@@ -69,7 +76,7 @@ public class CheckoutPage extends BasePage {
 
     public void setState(String state){
         highlight(selectState);
-        Select selectState = (Select) this.selectState;
+        Select selectState = new Select(this.selectState);
         selectState.selectByVisibleText(state);
     }
 
@@ -80,7 +87,7 @@ public class CheckoutPage extends BasePage {
 
     public void setCountry(String country){
         highlight(selectCountry);
-        Select selectCountry = (Select) this.selectCountry;
+        Select selectCountry = new Select(this.selectCountry);
         selectCountry.selectByVisibleText(country);
     }
 
@@ -116,5 +123,11 @@ public class CheckoutPage extends BasePage {
         highlight(btnReviewContinue);
         btnReviewContinue.click();
         return new OrderConfirmPage(driver);
+     }
+
+     public void seletNewAddress(){
+        highlight(addressListItem);
+        Select selectAddress = new Select(addressListItem);
+        selectAddress.selectByVisibleText("New Address");
      }
 }

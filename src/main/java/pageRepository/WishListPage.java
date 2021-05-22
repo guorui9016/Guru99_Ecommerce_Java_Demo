@@ -16,7 +16,7 @@ public class WishListPage extends BasePage {
     @FindBy(css = ".success-msg span")
     private WebElement successMessage;
 
-    @FindBy(css = "#item_50116 .cart-cell button")
+    @FindBy(css = "td[class*=customer-wishlist-item-cart] button")
     private WebElement btnAddToCart;
 
     public WishListPage(WebDriver driver) {

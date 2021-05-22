@@ -33,7 +33,7 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(id = "country")
     private WebElement selectCountry;
 
-    @FindBy(id = "region")
+    @FindBy(id = "region_id")
     private WebElement selectRegion;
 
     @FindBy(id = "postcode")
@@ -93,18 +93,19 @@ public class ShoppingCartPage extends BasePage {
 
     public void setSelectCountry(String country){
         highlight(selectCountry);
-        Select selectCountry = (Select) this.selectCountry;
+        Select selectCountry = new Select(this.selectCountry);
         selectCountry.selectByVisibleText(country);
     }
 
     public void setRegion(String region){
         highlight(selectRegion);
-        Select selectRegion = (Select) this.selectRegion;
+        Select selectRegion = new Select(this.selectRegion);
         selectRegion.selectByVisibleText(region);
     }
 
     public void setPostcode(String postcode){
         highlight(txtPostcode);
+        txtPostcode.clear();
         txtPostcode.sendKeys(postcode);
     }
 

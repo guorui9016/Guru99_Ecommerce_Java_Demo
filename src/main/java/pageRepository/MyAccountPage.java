@@ -4,6 +4,8 @@ import basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyAccountPage extends BasePage {
@@ -23,7 +25,7 @@ public class MyAccountPage extends BasePage {
     @FindBy(css = ".hello strong")
     private WebElement welcomeMsg;
 
-    @FindBy(xpath = "//a[text()='My Wishlist']")
+    @FindBy(xpath = "//div[@class='block-content']//a[text()='My Wishlist']")
     private WebElement myWishlist;
 
     public MyAccountPage(WebDriver driver) {
@@ -46,6 +48,7 @@ public class MyAccountPage extends BasePage {
     }
 
     public WishListPage clickWishListLink(){
+        wait.until(ExpectedConditions.visibilityOf(myWishlist));
         highlight(myWishlist);
         myWishlist.click();
         return new WishListPage(driver);
