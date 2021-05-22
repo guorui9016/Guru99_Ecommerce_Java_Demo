@@ -6,11 +6,22 @@
       "last_name": "Smith",
       "email": "johnsmith@gmail.com",
       "password": "123456",
-      "confirm_password": "123456",
       "expect_title": "MY DASHBOARD",
       "product": "LG LCD",
       "shared_email": "peter@gmail.com",
       "shared_msg": "Recommend"
+    }
+  ],
+  "testCase06": [
+    {
+      "email": "johnsmith@gmail.com",
+      "password": "123456",
+      "country" : "United States",
+      "state" :  "New York",
+      "zip" : "542896",
+      "address" : "ABC",
+      "city" : "new york",
+      "telephone" : "12345678"
     }
   ]
 }

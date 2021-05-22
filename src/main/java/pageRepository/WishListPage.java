@@ -16,6 +16,9 @@ public class WishListPage extends BasePage {
     @FindBy(css = ".success-msg span")
     private WebElement successMessage;
 
+    @FindBy(css = "td[class*=customer-wishlist-item-cart] button")
+    private WebElement btnAddToCart;
+
     public WishListPage(WebDriver driver) {
         super(driver);
     }
@@ -34,5 +37,11 @@ public class WishListPage extends BasePage {
     public String getSuccessMessageText(){
         highlight(successMessage);
         return successMessage.getText().trim();
+    }
+
+    public ShoppingCartPage clickAddToCart(){
+        highlight(btnAddToCart);
+        btnAddToCart.click();
+        return new ShoppingCartPage(driver);
     }
 }

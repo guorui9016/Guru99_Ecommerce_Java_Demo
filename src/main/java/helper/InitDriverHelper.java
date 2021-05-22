@@ -7,8 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 import java.net.URL;
+import java.util.HashMap;
 
 public class InitDriverHelper {
     private final Logger logger = LogManager.getLogger(InitDriverHelper.class);
@@ -91,6 +93,10 @@ public class InitDriverHelper {
         //close the info bar
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.setHeadless(headless);
+        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+        chromePrefs.put("credentials_enable_service", false);
+        chromePrefs.put("profile.password_manager_enabled", false);
+        chromeOptions.setExperimentalOption("prefs", chromePrefs);
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
         logger.info("Create a chromedriver");
