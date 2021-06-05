@@ -9,25 +9,26 @@
     <test verbose="3" preserve-order="true" name="Chrome platform">
         <parameter name="browser" value="CHROME"/>
         <classes>
-<!--            <class name="TestCase1"></class>-->
-<!--            <class name="TestCase2"></class>-->
-<!--            <class name="TestCase3"></class>-->
-<!--            <class name="TestCase4"></class>-->
-<!--            <class name="TestCase5"></class>-->
-<!--            <class name="TestCase6"></class>-->
+            <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
+            <class name="TestCase4"></class>
+            <class name="TestCase5"></class>
+            <class name="TestCase6"></class>
             <class name="TestCase7"></class>
         </classes>
     </test>
 
-<!--    <test verbose="3" preserve-order="true" name="Firefox platform">-->
-<!--        <parameter name="browser" value="FIREFOX"/>-->
-<!--        <classes>-->
-<!--            <class name="TestCase1"></class>-->
-<!--            <class name="TestCase2"></class>-->
-<!--            <class name="TestCase3"></class>-->
-<!--            <class name="TestCase4"></class>-->
-<!--            <class name="TestCase5"></class>-->
-<!--            <class name="TestCase6"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test verbose="3" preserve-order="true" name="Firefox platform">
+        <parameter name="browser" value="FIREFOX"/>
+        <classes>
+            <class name="TestCase1"></class>
+            <class name="TestCase2"></class>
+            <class name="TestCase3"></class>
+            <class name="TestCase4"></class>
+            <class name="TestCase5"></class>
+            <class name="TestCase6"></class>
+            <class name="TestCase7"></class>
+        </classes>
+    </test>
 </suite>
