@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.CapabilityType;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class InitDriverHelper {
     private final Logger logger = LogManager.getLogger(InitDriverHelper.class);
@@ -41,6 +42,8 @@ public class InitDriverHelper {
                 initChromeDriver(headless);
                 break;
         }
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
 
@@ -70,7 +73,6 @@ public class InitDriverHelper {
         //close the info bar
         firefoxOptions.setHeadless(headless);
         driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().window().maximize();
         logger.info("Create a chromedriver");
     }
 
@@ -98,7 +100,6 @@ public class InitDriverHelper {
         chromePrefs.put("profile.password_manager_enabled", false);
         chromeOptions.setExperimentalOption("prefs", chromePrefs);
         driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
         logger.info("Create a chromedriver");
     }
 }
