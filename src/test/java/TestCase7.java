@@ -6,14 +6,19 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import pageRepository.*;
 
-public class TestCase6 extends TestCaseBase {
-    Logger logger = LogManager.getLogger(TestCase6.class);
+/**
+ * Verify you are able to change or reorder previously added product
+ */
+
+public class TestCase7 extends TestCaseBase {
+    Logger logger = LogManager.getLogger(TestCase7.class);
 
     @Test(dataProvider = "testData", dataProviderClass = TestDataProvider.class)
-    public void testCase06(JsonObject testData){
-        //get all of the test data from the json
+    public void testCase07(JsonObject testData){
+        //load data
         String email = testData.get("email").getAsString();
         String password = testData.get("password").getAsString();
+        int qty = testData.get("qty").getAsInt();
         String country = testData.get("country").getAsString();
         String state = testData.get("state").getAsString();
         String zip = testData.get("zip").getAsString();
@@ -21,38 +26,25 @@ public class TestCase6 extends TestCaseBase {
         String city = testData.get("city").getAsString();
         String telephone = testData.get("telephone").getAsString();
         logger.info("load test data: " + testData.toString());
-
-        //1. Goto http://live.demoguru99.com
+        //1. Go to http://live. Demoguru99.com
         HomePage homePage = new HomePage(driver);
         //2. Click on my account link
         MyAccountNoLoginPage myAccountNoLoginPage = homePage.clickMyAccountLink();
-        //3. Loing in application
+        //3. Login in application using previously created credential
         myAccountNoLoginPage.setTxtEmail(email);
         myAccountNoLoginPage.setTxtPassword(password);
         MyAccountPage myAccountPage = myAccountNoLoginPage.clickLogin();
-        //4. Click on my wishlist link
-        WishListPage wishListPage = myAccountPage.clickWishListLink();
-        //5. In next page, click add to cart link
-        ShoppingCartPage shoppingCartPage = wishListPage.clickAddToCart();
-        //6. Click proceed to checkout
-        //7.enter shipping information
-        shoppingCartPage.setSelectCountry(country);
-        shoppingCartPage.setRegion(state);
-        shoppingCartPage.setPostcode(zip);
-        //8. click estimate
-        shoppingCartPage.clickEstimate();
-        //9. verify shipping cost generated
-        String shippingFee = shoppingCartPage.getShippingFee();
-        softAssert.assertEquals(shippingFee, "$5.00");
-        //10. select shipping cost.update total
-        shoppingCartPage.selectShippingFee();
-        shoppingCartPage.clickUpdateTotal();
-        //11. verify shipping cost is add t total
-        String priceWithShipping = shoppingCartPage.getTotalPirce();
-        softAssert.assertEquals(priceWithShipping, "$620.00");
-        //12. click 'Proceed to checkout"
+        //4. Click on 'Reorder' link, change QTY & click Update
+        ShoppingCartPage shoppingCartPage = myAccountPage.clickReorderLink();
+        String totalPirce = shoppingCartPage.getTotalPirce();
+        shoppingCartPage.setProductQty(qty);
+        shoppingCartPage.clickBtnUpdate();
+        String currentTotalPirce = shoppingCartPage.getTotalPirce();
+        //5. Verify Grand total is changed
+        //Check: 1) Grand total is changed
+        softAssert.assertNotEquals(totalPirce, currentTotalPirce);
+        //6. Complete billing & shipping information
         CheckoutPage checkoutPage = shoppingCartPage.clickCheckout();
-        //13. Enter billing information
         checkoutPage.seletNewAddress();
         checkoutPage.setAddress(address);
         checkoutPage.setCity(city);
@@ -68,9 +60,10 @@ public class TestCase6 extends TestCaseBase {
         checkoutPage.clickPaymentContinue();
         //16. Click 'Place order' button
         OrderConfirmPage orderConfirmPage = checkoutPage.clickReviewContinue();
-        //17. Verify order is generated. Note the order number
-        String pageTitle = orderConfirmPage.getPageTitle();
-        softAssert.assertNotEquals(pageTitle, "YOUR ORDER HAS BEEN RECEIVED.");
+        //7. Verify order is generated and note the order number
+        String orderNumber = orderConfirmPage.getOrderNumber();
+        //check: 2) Order number is generated
+        softAssert.assertTrue(!orderNumber.isEmpty());
         softAssert.assertAll();
     }
 }

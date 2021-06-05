@@ -23,5 +23,18 @@
       "city" : "new york",
       "telephone" : "12345678"
     }
+  ],
+  "testCase07": [
+    {
+      "email": "johnsmith@gmail.com",
+      "password": "123456",
+      "qty" : "10",
+      "country" : "United States",
+      "state" :  "New York",
+      "zip" : "542896",
+      "address" : "ABC",
+      "city" : "new york",
+      "telephone" : "12345678"
+    }
   ]
 }

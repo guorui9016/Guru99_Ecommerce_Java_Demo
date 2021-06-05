@@ -10,6 +10,9 @@ public class OrderConfirmPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement pageTitle;
 
+    @FindBy(xpath = "//p[text()='Your order # is: ']/a")
+    private WebElement orderNumber;
+
     public OrderConfirmPage(WebDriver driver) {
         super(driver);
     }
@@ -17,5 +20,9 @@ public class OrderConfirmPage extends BasePage {
     public String getPageTitle(){
         highlight(pageTitle);
         return pageTitle.getText().trim();
+    }
+
+    public String getOrderNumber(){
+        return orderNumber.getText().trim();
     }
 }

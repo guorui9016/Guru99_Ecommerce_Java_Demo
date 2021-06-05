@@ -86,9 +86,9 @@ public class ShoppingCartPage extends BasePage {
         return emptyCartTitle.getText();
     }
 
-    public WebElement getBtnUpdate() {
+    public void clickBtnUpdate() {
         highlight(btnUpdate);
-        return btnUpdate;
+        btnUpdate.click();
     }
 
     public void setSelectCountry(String country){
@@ -135,7 +135,7 @@ public class ShoppingCartPage extends BasePage {
         return tvTotalPirce.getText();
     }
 
-    public CheckoutPage clickClickout(){
+    public CheckoutPage clickCheckout(){
         highlight(btnCheckout);
         btnCheckout.click();
         return new CheckoutPage(driver);
