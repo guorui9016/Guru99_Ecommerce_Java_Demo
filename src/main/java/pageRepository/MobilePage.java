@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class MobilePage extends BasePage {
@@ -20,7 +21,7 @@ public class MobilePage extends BasePage {
     private WebElement sortBySelect;
 
     @FindBy(css = "ul[class^=products-grid]")
-    private WebElement productsList;
+    private WebElement productsContainer;
 
     @FindBy(xpath = "//a[@title=\"Xperia\"] /..")
     private WebElement productSony;
@@ -28,7 +29,7 @@ public class MobilePage extends BasePage {
     @FindAll(
             @FindBy(css = "li[class^=item]")
     )
-    private List<WebElement> products;
+    private List<WebElement> productsList;
 
     @FindBy(css = "div[class*=block-compare]")
     private WebElement compareBox;
@@ -47,6 +48,16 @@ public class MobilePage extends BasePage {
     public WebElement getProductSony(){
         highlight(productSony);
         return productSony;
+    }
+
+    public WebElement getProduct(String productName){
+        for (WebElement product : productsList) {
+            String name = product.findElement(By.cssSelector(".product-name a")).getText();
+            if (name == productName){
+                return product;
+            }
+        }
+        throw new NoSuchElementException("Can not find the product: " + productName);
     }
 
     public ProductDetailsPage gotoProducts(WebElement product){
@@ -70,7 +81,7 @@ public class MobilePage extends BasePage {
     }
 
     public String[] getAllProductsName(){
-        List<WebElement> nameElements = productsList.findElements(By.cssSelector(".product-name a"));
+        List<WebElement> nameElements = productsContainer.findElements(By.cssSelector(".product-name a"));
         String[] names = new String[nameElements.size()];
         for (int i = 0; i < nameElements.size(); i++) {
             highlight(nameElements.get(i));
@@ -80,7 +91,7 @@ public class MobilePage extends BasePage {
     }
 
     public WebElement getProductByName(String productName){
-        for (WebElement product : products) {
+        for (WebElement product : productsList) {
             String name = product.findElement(By.cssSelector(".product-name a")).getText().trim();
             if (productName.equalsIgnoreCase(name)) {
                 highlight(product);

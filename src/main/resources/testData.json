@@ -36,5 +36,12 @@
       "city" : "new york",
       "telephone" : "12345678"
     }
+  ],
+  "testCase08": [
+    {
+      "email": "johnsmith@gmail.com",
+      "password": "123456",
+      "coupon": "GURU50"
+    }
   ]
 }

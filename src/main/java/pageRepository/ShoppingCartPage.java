@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.ws.RespectBinding;
+
 public class ShoppingCartPage extends BasePage {
     @FindBy(css = "input[title= Qty]")
     private WebElement productQty;
@@ -53,6 +55,15 @@ public class ShoppingCartPage extends BasePage {
 
     @FindBy(css = "#shopping-cart-totals-table tfoot .price")
     private WebElement tvTotalPirce;
+
+    @FindBy(css = "#coupon_code")
+    private WebElement coupon;
+
+    @FindBy(css = "button[title='Apply']")
+    private WebElement btnApply;
+
+    @FindBy(css = ".success-msg span")
+    private WebElement txtCouponSuccessMessage;
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
@@ -139,5 +150,21 @@ public class ShoppingCartPage extends BasePage {
         highlight(btnCheckout);
         btnCheckout.click();
         return new CheckoutPage(driver);
+    }
+
+    public void setCoupon(String code){
+        highlight(coupon);
+        coupon.clear();
+        coupon.sendKeys(code);
+    }
+
+    public void clickBtnApply(){
+        highlight(btnApply);
+        btnApply.click();
+    }
+
+    public String getCouponSuccessMsg(){
+        highlight(txtCouponSuccessMessage);
+        return  txtCouponSuccessMessage.getText();
     }
 }
