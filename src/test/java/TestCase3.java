@@ -23,7 +23,7 @@ public class TestCase3 extends TestCaseBase {
         ShoppingCartPage shoppingCartPage = mobilePage.addProductIntoCart(mobilePage.getProductSony());
         //step 4: add 1000 products to cart
         shoppingCartPage.setProductQty(1000);
-        shoppingCartPage.getBtnUpdate().click();
+        shoppingCartPage.clickBtnUpdate();
         //step 5: check the error message
         softAssert.assertEquals(shoppingCartPage.getErrorMsg(), "Some of the products cannot be ordered in requested quantity.");
         softAssert.assertEquals(shoppingCartPage.getErrorMsgDetails(), "* The maximum quantity allowed for purchase is 500.");

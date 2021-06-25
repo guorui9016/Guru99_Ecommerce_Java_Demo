@@ -28,6 +28,9 @@ public class MyAccountPage extends BasePage {
     @FindBy(xpath = "//div[@class='block-content']//a[text()='My Wishlist']")
     private WebElement myWishlist;
 
+    @FindBy(css = ".link-reorder")
+    private WebElement reorderLink;
+
     public MyAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -52,5 +55,11 @@ public class MyAccountPage extends BasePage {
         highlight(myWishlist);
         myWishlist.click();
         return new WishListPage(driver);
+    }
+
+    public ShoppingCartPage clickReorderLink(){
+        highlight(reorderLink);
+        reorderLink.click();
+        return new ShoppingCartPage(driver);
     }
 }
